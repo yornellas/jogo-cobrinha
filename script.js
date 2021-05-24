@@ -49,6 +49,13 @@ function startGame() {
     if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
     if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
 
+    for (i = 1; i < snake.length; i++) { //verifica a length da cobra
+        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {//verifica se a cabeça se choca com o corpo
+            clearInterval(game);
+            alert("GAME OVER :( ");
+        } 
+    }
+
     createBackground();
     createSnake();
     drawFood();
