@@ -23,6 +23,16 @@ function createSnake() {
     }
 }
 
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box, //gera números aleatórios para a comida aparecer
+    y: Math.floor(Math.random() * 15 + 1) * box
+};
+
+function drawFood() {
+    context.fillStyle = "tomato";
+    context.fillRect(food.x, food.y, box, box);
+}
+
 document.addEventListener('keydown', update);
 
 function update(event) {
@@ -41,6 +51,7 @@ function startGame() {
 
     createBackground();
     createSnake();
+    drawFood();
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
