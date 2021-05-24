@@ -8,6 +8,8 @@ snake[0] = {
     y: 8 * box
 }
 
+let direction = "right"; //direção para a cobrinha andar
+
 function createBackground() {
     context.fillStyle = "lightblue";
     context.fillRect(0, 0, 16 * box, 16 * box) //x, y, altura e largura do canvas
@@ -21,6 +23,28 @@ function createSnake() {
     }
 }
 
-createBackground();
-createSnake();
+function startGame() {
+    createBackground();
+    createSnake();
+
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    if (direction == "right") snakeX += box;
+    if (direction == "left") snakeX -= box;
+    if (direction == "up") snakeY -= box;
+    if (direction == "down") snakeY += box;
+
+    snake.pop(); //tira o último elemento do Array
+    
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snake.unshift(newHead);
+}
+
+let game = setInterval(startGame, 100) //a cada 100ms atualiza
+
 
